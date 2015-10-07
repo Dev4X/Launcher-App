@@ -1,0 +1,56 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#0099cc"
+    tools:context=".LauncherActvity"
+    android:keepScreenOn="true">
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/background"
+        android:scaleType="fitXY" />
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/exitLauncherButton"
+            android:text="Disable Launcher"
+            android:onClick="exitLauncher" />
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/changePasswordButotn"
+            android:text="Change Password"
+            android:onClick="changePassword" />
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/startLauncherButton"
+            android:text="Enable Launcher"
+            android:onClick="launchLearningApp" />
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/applicationsGrid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="128dip"
+        android:layout_marginTop="50dip"
+        android:gravity="center"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth" >
+    </GridView>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:visibility="gone"
+        android:id="@+id/learningAppIcon"
+        android:src="@drawable/ic_launcher"/>
+
+</FrameLayout>
