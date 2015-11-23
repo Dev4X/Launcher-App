@@ -23,6 +23,7 @@ import android.view.Window;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 import android.content.DialogInterface;
 import android.text.InputType;
@@ -92,14 +93,16 @@ public class LauncherActvity extends Activity implements OnItemClickListener{
 
     private static ArrayList<AndroidApplicationInfo> mApplications;
     private GridView mAllApps;
+    private FrameLayout decoreView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_launcher_actvity);
+
+        decoreView = (FrameLayout) findViewById(R.id.decorView);
+        hideSystemUI();
 
         String password = spHelper.getPreferenceValue("password");
         String launchMainApp = spHelper.getPreferenceValue("launch");
@@ -281,6 +284,19 @@ public class LauncherActvity extends Activity implements OnItemClickListener{
             }
         });
         builder.show();
+    }
+
+    private void hideSystemUI() {
+        // Set the IMMERSIVE flag.
+        // Set the content to appear under the system bars so that the content
+        // doesn't resize when the system bars hide and show.
+        decoreView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE);
     }
 
     private void loadApplications(){
